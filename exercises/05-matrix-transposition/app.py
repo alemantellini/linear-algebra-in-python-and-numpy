@@ -1,5 +1,6 @@
+# EJERCICIO 5 - matrix transposition
 import numpy as np  
-
+matrix = [[1, 2, 3], [4, 5, 6]]
 def transpose(matrix, mode="pure"):
     """
     Computes the transpose of a matrix.
@@ -11,7 +12,16 @@ def transpose(matrix, mode="pure"):
     Returns:
     - The transposed matrix.
     """
-   
-    pass  # Remove this line when implemented
 
+    if not matrix or any(len(row) != len(matrix[0]) for row in matrix):
+        return "Invalid matrix"
+    if mode == "pure":
+        transpuesta = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+        return transpuesta
+    elif mode == "numpy":
+        A = np.array(matrix)
+        transpuesta = A.T
+        return transpuesta
 
+print(transpose(matrix, "pure"))
+print(transpose(matrix, "numpy"))
