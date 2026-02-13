@@ -1,4 +1,8 @@
+# EJERCICIO 6 - determinants and inverses
 import numpy as np
+
+matrix = [[1, 2], [3, 4]]
+array = np.array(matrix)
 
 def determinant(matrix, mode="pure"):
     """
@@ -11,8 +15,13 @@ def determinant(matrix, mode="pure"):
     Returns:
     - The determinant value.
     """
+    if mode == "pure":
+       return (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0])
+    elif mode == "numpy":
+        return np.linalg.det(matrix)
+    else:
+        return "Invalid mode"
 
-    pass  # Remove this line when implemented
 
 def inverse_matrix(matrix, mode="pure"):
     """
@@ -26,6 +35,22 @@ def inverse_matrix(matrix, mode="pure"):
     - The inverse matrix or a message if it doesn't exist.
     """
 
-    pass  # Remove this line when implemented
+    if mode == "pure":
+        det = (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0])
+        if det == 0:
+            return "Matrix is not invertible"
+        return [[matrix[1][1] / det, -matrix[0][1] / det], 
+                [-matrix[1][0] / det, matrix[0][0] / det]]
+    elif mode == "numpy":
+        det = np.linalg.det(matrix)
+        if det == 0:
+            return "Matrix is not invertible"
+        return np.linalg.inv(matrix)
+    else:
+        return "Invalid mode"
 
+print(determinant(matrix, "pure"))
+print(determinant(matrix, "numpy"))
 
+print(inverse_matrix(matrix, "pure"))
+print(inverse_matrix(matrix, "numpy"))
