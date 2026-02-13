@@ -1,3 +1,4 @@
+# EJERCICIO 1 - vector representation
 import numpy as np  # Import NumPy to use it later
 
 def create_vector(lst, mode="pure"):
@@ -11,8 +12,12 @@ def create_vector(lst, mode="pure"):
     Returns:
     - A vector in the specified format.
     """
-    pass # Remove this line when implemented
-    
+    if mode == "pure":
+        return lst
+    elif mode == "numpy":
+        return np.array(lst)
+    else:
+        print("Usa 'pure' o 'numpy'.")
 
 # Test the function with the following values:
 vector1 = create_vector([1, 2, 3], "pure")
