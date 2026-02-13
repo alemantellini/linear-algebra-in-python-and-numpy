@@ -1,0 +1,50 @@
+# EJERCICIO 7 - solving systems of linear equations - prueba 1
+import numpy as np
+
+def solve_system(A, b, mode="numpy"):
+    """
+    Solves the linear system Ax = b.
+
+    Parameters:
+    - A: list of lists or np.array -> Coefficient matrix.
+    - b: list or np.array -> Result vector.
+    - mode: str -> "pure" for manual computation, "numpy" for np.linalg.solve().
+
+    Returns:
+    - The solution vector x.
+    """
+    # 1. Calculamos el determinante (Lógica Ejercicio 6)
+    det = A[0][0] * A[1][1] - A[0][1] * A[1][0]
+    
+    if det == 0:
+        return "Matrix is not invertible"
+
+    if mode == "pure":
+        # 2. Obtenemos la matriz inversa (Lógica Ejercicio 6)
+        # inv = [[d/det, -b/det], [-c/det, a/det]]
+        inv_A = [[A[1][1] / det, -A[0][1] / det], 
+                 [-A[1][0] / det, A[0][0] / det]]
+        
+        # 3. Multiplicamos la inversa por el vector b: x = inv_A * b
+        x = inv_A[0][0] * b[0] + inv_A[0][1] * b[1]
+        y = inv_A[1][0] * b[0] + inv_A[1][1] * b[1]
+        
+        return [x, y]
+
+    elif mode == "numpy":
+        # 4. Usamos la función oficial de NumPy
+        return np.linalg.solve(np.array(A), np.array(b))
+
+    return "Invalid mode"
+
+# Definimos el sistema
+A = [[2, 3], [4, -1]]
+b = [5, 1]
+
+# Solución usando el modo "pure"
+sol_pure = solve_system(A, b, "pure")
+print("Solución pure:", sol_pure)
+
+# Solución usando el modo "numpy"
+sol_numpy = solve_system(A, b, "numpy")
+print("Solución numpy:", sol_numpy)
