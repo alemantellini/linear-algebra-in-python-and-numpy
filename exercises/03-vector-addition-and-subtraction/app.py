@@ -1,5 +1,5 @@
+# EJERCICIO 3 - vector addition and subtraction
 import numpy as np
-
 
 # vectors
 vector1 = [1, 2, 3]
@@ -17,9 +17,20 @@ def sum_vectors(v1, v2, mode="pure"):
     Returns:
     - A vector with the element-wise sum.
     """
- 
-    pass  # Remove this line when implemented
 
+    if len(v1) != len(v2):
+        raise ValueError("Vectors must have the same length")
+    if mode == "pure":
+        suma = []
+        for i in range(len(v1)):
+            suma.append(v1[i] + v2[i])
+        return suma
+    elif mode == "numpy":
+        return np.array(v1) + np.array(v2)
+    else:
+        return "Invalid mode"
+
+    
 def subtract_vectors(v1, v2, mode="pure"):
     """
     Computes the element-wise subtraction of two vectors.
@@ -33,8 +44,17 @@ def subtract_vectors(v1, v2, mode="pure"):
     - A vector with the element-wise subtraction.
     """
 
-    pass  # Remove this line when implemented
-
+    if len(v1) != len(v2):
+        raise ValueError("Vectors must have the same length")
+    if mode == "pure":
+        resta = []
+        for i in range(len(v1)):
+            resta.append(v1[i] - v2[i])
+        return resta
+    elif mode == "numpy":
+        return np.array(v1) - np.array(v2)
+    else:
+        return "Invalid mode"
 
 sum_result_pure = sum_vectors(vector1, vector2, "pure")
 sum_result_numpy = sum_vectors(vector1, vector2, "numpy")
