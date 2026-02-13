@@ -1,3 +1,4 @@
+# EJERCICIO 2 - matrix representation
 import numpy as np  # Import NumPy to use it later
 import random  # To generate random values in pure Python
 
@@ -13,7 +14,12 @@ def create_matrix(n, m, mode="pure"):
     Returns:
     - A matrix in the specified format.
     """
-    pass # Remove this line when implemented
+    if mode == "pure":
+        return [[random.random() for i in range(m)] for j in range (n)]
+    elif mode == "numpy":
+        return np.random.random((n, m))
+    else:
+        print("Usa 'pure' o 'numpy'.")
 
 # Test the function with the following values:
 matrix1 = create_matrix(3, 3, "pure")
